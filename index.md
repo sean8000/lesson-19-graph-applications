@@ -3,7 +3,7 @@
 **CISC320 Spring 2023 Lesson 14 - Graph Applications**
 
 Group Members:
-* First member (email)
+* First member (seanjohn@udel.edu)
 * Second member (email)
 * Third member (email)
 * Fourth member (email)
