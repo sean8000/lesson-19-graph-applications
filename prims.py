@@ -4,11 +4,21 @@ import matplotlib.pyplot as plt
 """
 Done by Sean Johnson, seanjohn@udel.edu
 
-The problem I have created is 
+The problem: The sidewalks to the library at UD have been declared unfit for use due to wear and decay. 
+The university wants to build brick walkways this time instead, but they're very expensive! The university
+had many interconnected sidewalks, but this is too expensive to do for brick walkways, so UD wants to have
+the minimum number of walkways in order to get from the buildings on North and South campus to the library.
 
-The Algorithm I am using on the problem is Prim's algorithm in order to create a minimal spanning tree.
+As the engineer contracted by UD your job is to cut costs to a minimum for the university. You are to use the 
+smallest amount of bricks possible in order to make sure every major building has a path to the library. You 
+are also using the previous network of interconnected sidewalks to decide where to place your brick walkways. 
 
-I am Using networkx in order to create the graph
+The Algorithm being used on the problem is Prim's algorithm in order to create a minimum spanning tree. The 
+minimum spanning tree in the context of this problem would be the graph of brick walkways with the least
+amount of bricks used. This would be a network of brick walkways(edges), with every building(node) 
+having a path to the library(also a node), and having the smallest total edge weight compared to any other subgraph. 
+
+I am Using networkx in order to create the graph, and matplotlib to plot it.
 
 
 """
