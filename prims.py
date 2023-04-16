@@ -77,7 +77,8 @@ labels = nx.get_edge_attributes(G,'weight')
 plt.figure(1,figsize=(12,12)) 
 nx.draw_networkx(G,pos, node_size=60, font_size=8)
 nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
-plt.show()
+plt.savefig("initial_graph.png")
+#plt.show()
 
 #Generates minimum spanning tree
 pos = nx.spring_layout(H, seed=4)
@@ -85,5 +86,6 @@ labels = nx.get_edge_attributes(H,'weight')
 plt.figure(2,figsize=(12,12)) 
 nx.draw_networkx(H,pos, node_size=60, font_size=8)
 nx.draw_networkx_edge_labels(H,pos,edge_labels=labels)
-plt.show()
+plt.savefig("minimum_spanning_tree")
+#plt.show()
 
