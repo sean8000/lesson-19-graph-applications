@@ -10,7 +10,7 @@ The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they a
 It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to 
 your next class. 
 
-Thankfully, the dining hall display the amount of student traffic in different sections of the dining hall on a TV at the enterance.
+Thankfully, the dining hall display the amount of student traffic between different stations in the dining hall on a TV at the enterance.
 
 *define algo being used what nodes and vertexs represent, input and output
 
@@ -18,7 +18,7 @@ I am using ***
 
 """
 
-graph = {
+graph1 = {
     'enterance': {'home': {'weight': 4}, 'balance': {'weight': 2}, 'salad': {'weight': 1}},
     'home': {'kosher': {'weight': 2}, 'grill': {'weight': 5}, 'coffee': {'weight': 1}},
     'balance': {'desert': {'weight': 3}, 'vegan': {'weight': 1}},
@@ -43,12 +43,12 @@ graph = {
 }
 
 #Actual graph
-G = nx.from_dict_of_dicts(graph)
+G1 = nx.from_dict_of_dicts(graph1)
 
-pos = nx.spring_layout(G, seed=4)
-labels = nx.get_edge_attributes(G,'weight')
+pos = nx.spring_layout(G1, seed=4)
+labels = nx.get_edge_attributes(G1,'weight')
 plt.figure(1,figsize=(12,12)) 
-nx.draw_networkx(G,pos, node_size=60, font_size=8)
-nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
-plt.savefig("initial_graph.png")
+nx.draw_networkx(G1,pos, node_size=60, font_size=8)
+nx.draw_networkx_edge_labels(G1,pos,edge_labels=labels)
+plt.savefig("initial_graph1.png")
 plt.show()

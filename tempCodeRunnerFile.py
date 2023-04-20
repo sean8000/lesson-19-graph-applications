@@ -1,1 +1,1 @@
-balance
+pos = nx.spring_layout(G, seed=4)
