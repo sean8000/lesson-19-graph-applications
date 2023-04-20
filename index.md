@@ -105,7 +105,7 @@ The resulting subgraph is the minimum spanning tree, which is the subgraph with 
 ### Rush Through Dining Hall
 
 **Informal Description:**
-The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they are serving your favorite meal all the way on the other side of the dining hall.It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to your next class. Thankfully, the dining hall displays the amount of student traffic between different stations in the dining hall on a TV at the enterance.
+The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they are serving your favorite meal all the way on the other side of the dining hall. It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to your next class. Thankfully, the dining hall displays the amount of student traffic between different stations in the dining hall on a TV at the enterance.
 
 > **Formal Description:**
 >  * Input: 
