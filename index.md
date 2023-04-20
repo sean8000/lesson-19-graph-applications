@@ -108,8 +108,8 @@ The resulting subgraph is the minimum spanning tree, which is the subgraph with 
 The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they are serving your favorite meal all the way on the other side of the dining hall. It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to your next class. Thankfully, the dining hall displays the amount of student traffic between different stations in the dining hall on a TV at the enterance.
 
 > **Formal Description:**
->  * Input: 
->  * Output: 
+>  * Input: A connected, undirected, weighted graph with at least 20 vertices, with the vertices being food stations in the dining hall, the edges being the paths between stations, and the edge weights being the traffic (number of students in the way) between stations
+>  * Output: A graph of the shortest path to the nachos station
 
 **Graph Problem/Algorithm:** Dijkstra's
 
@@ -177,6 +177,7 @@ plt.savefig("path_graph1.png")
 ![The resulting minimum spanning tree](path_graph1.png)
 
 **Interpretation of Results:**
+The result is a graph showing the path with the least total traffic (least total edge weight), from the enterance to the students desired food station (nacho station). In the conetxt of the problem, this is the path the students can reach the nacho station the quickest.
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------

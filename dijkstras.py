@@ -14,7 +14,7 @@ Thankfully, the dining hall display the amount of student traffic between differ
 
 *define algo being used what nodes and vertexs represent, input and output
 
-I am using ***
+I am Using networkx in order to create the graph, and matplotlib to plot it.
 
 """
 
@@ -42,7 +42,7 @@ graph1 = {
     'pizza': {}
 }
 
-#Actual graph
+# Actual graph
 G1 = nx.from_dict_of_dicts(graph1)
 
 pos = nx.spring_layout(G1, seed=4)
