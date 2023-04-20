@@ -105,7 +105,7 @@ The resulting subgraph is the minimum spanning tree, which is the subgraph with 
 ### Rush Through Dining Hall
 
 **Informal Description:**
-The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they are serving your favorite meal all the way on the other side of the dining hall.It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to your next class. Thankfully, the dining hall displays the amount of student traffic between different stations in the dining hall on a TV at the enterance.
+The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they are serving your favorite meal all the way on the other side of the dining hall. It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to your next class. Thankfully, the dining hall displays the amount of student traffic between different stations in the dining hall on a TV at the enterance.
 
 > **Formal Description:**
 >  * Input: 
@@ -154,8 +154,27 @@ plt.savefig("initial_graph1.png")
 ![A visualization of the initial graph](initial_graph1.png)
 
 **Solution code:**
+```python
+H1 = nx.shortest_path(G1, source='enterance', target='nachos', weight='weight', method='dijkstra')
+
+short_graph = {}
+now = H1[0]
+for node in H1[1:]:
+    short_graph[now] = {node: {'weight': graph1[now][node]['weight'] }}
+    now = node
+
+H2 = nx.from_dict_of_dicts(short_graph)
+
+pos = nx.spring_layout(H2, seed=4)
+labels = nx.get_edge_attributes(H2,'weight')
+plt.figure(1,figsize=(12,12)) 
+nx.draw_networkx(H2,pos, node_size=60, font_size=8)
+nx.draw_networkx_edge_labels(H2,pos,edge_labels=labels)
+plt.savefig("path_graph1.png")
+```
 
 **Output:**
+![The resulting minimum spanning tree](path_graph1.png)
 
 **Interpretation of Results:**
 
