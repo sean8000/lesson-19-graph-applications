@@ -19,9 +19,9 @@ I am using ***
 """
 
 graph = {
-    'enterance': {'home': {'weight': 4}, 'true balance': {'weight': 2}, 'salad': {'weight': 1}},
+    'enterance': {'home': {'weight': 4}, 'balance': {'weight': 2}, 'salad': {'weight': 1}},
     'home': {'kosher': {'weight': 2}, 'grill': {'weight': 5}, 'coffee': {'weight': 1}},
-    'true balance': {'desert': {'weight': 3}, 'vegan': {'weight': 1}},
+    'balance': {'desert': {'weight': 3}, 'vegan': {'weight': 1}},
     'salad': {'infused water': {'weight': 2}, 'wrap': {'weight': 2}, 'panini': {'weight': 2}, 'vegan': {'weight': 1}, 'fruit bar': {'weight': 3}},
     'kosher': {'halal': {'weight': 3}},
     'grill': {'sizzling': {'weight': 3}, 'nachos': {'weight': 2}, 'desert': {'weight': 1}},
@@ -38,13 +38,14 @@ graph = {
     'icecream': {'smoothie': {'weight': 4}},
     'cereal': {},
     'soda': {},
-    'smoothie': {}
+    'smoothie': {},
+    'pizza': {}
 }
 
 #Actual graph
 G = nx.from_dict_of_dicts(graph)
 
-pos = nx.spring_layout(G, seed=4, k=5)
+pos = nx.spring_layout(G, seed=4)
 labels = nx.get_edge_attributes(G,'weight')
 plt.figure(1,figsize=(12,12)) 
 nx.draw_networkx(G,pos, node_size=60, font_size=8)
