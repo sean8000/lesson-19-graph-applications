@@ -61,6 +61,9 @@ graph = {
     'TH': {'LN': {'weight': 1}},
     'MH': {'TB': {'weight': 10}, 'PH': {'weight': 6}}
                }
+"""
+Meanings: L = Library, KB = Kirkrbide hall, SH = Smith hall, MH = Memorial hall, CR = Ceasar Rodney dining hall,  AH = Allison hall, AHW = Allison hall west, TH = Thompson hall, LN = Lane hall, PL = Pernell hall, EW = Ewing hall, TB = Trabant, WHS = Willard educational hall, MD = McDowell hall, IE = Independence east, IW = Independence west, PH = Pearson hall, SL = Sharp lab, PK = Perkins, GH = Gore hall, ISE = Harker lab
+"""
 
 G = nx.from_dict_of_dicts(graph)
 
