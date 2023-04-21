@@ -25,6 +25,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 ```
 
+## Additional sources
+https://stackoverflow.com/questions/14547388/networkx-in-python-draw-node-attributes-as-labels-outside-the-node 
+
 ### Minimal Brick Walkways
 
 **Informal Description**: 
@@ -145,8 +148,17 @@ G1 = nx.from_dict_of_dicts(graph1)
 pos = nx.spring_layout(G1, seed=4)
 labels = nx.get_edge_attributes(G1,'weight')
 plt.figure(1,figsize=(12,12)) 
-nx.draw_networkx(G1,pos, node_size=60, font_size=8)
-nx.draw_networkx_edge_labels(G1,pos,edge_labels=labels)
+
+pos_higher = {}
+y_off = 0.04  # offset on the y axis
+x_off = 0.03  # offset on the x axis
+
+for k, v in pos.items():
+    pos_higher[k] = (v[0]+x_off, v[1]+y_off)
+
+nx.draw_networkx(G1,pos, node_size=60, with_labels=False)
+nx.draw_networkx_labels(G1, pos_higher, font_size=8)
+nx.draw_networkx_edge_labels(G1,pos,edge_labels=labels, font_size=8)
 plt.savefig("initial_graph1.png")
 ```
 
