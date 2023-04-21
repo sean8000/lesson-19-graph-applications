@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 ### Minimal Brick Walkways
 
 **Informal Description**: 
-The problem: The sidewalks to the library at UD have been declared unfit for use due to wear and decay. The university wants to build brick walkways this time instead, but they're very expensive! The university has many interconnected sidewalks, but this is too expensive to do for brick walkways, so UD wants to have the minimum number of walkways in order to get from the buildings on campus to the library. As the engineer contracted by UD your job is to cut costs to a minimum for the university. You are to use the smallest amount of bricks possible   (A length of 1 in the context of the problem is equivalent to a 100ft length walkway of bricks) in order to make sure every major building has a path to the library. You are also using the previous network of interconnected sidewalks(the visualized graph) to decide where to place your brick walkways.
+The problem: The sidewalks to the library at UD have been declared unfit for use due to wear and decay. The university wants to build brick walkways this time instead, but they're very expensive! The university has many interconnected sidewalks, but this is too expensive to do for brick walkways, so UD wants to have the minimum number of walkways in order to get from some of the buildings on campus to the library. As the engineer contracted by UD your job is to cut costs to a minimum for the university. You are to use the smallest amount of bricks possible (A length of 1 in the context of the problem is equivalent to a 100ft length walkway of bricks) in order to make sure every major building has a path to the library. You are also using the previous network of interconnected sidewalks(the visualized graph) to decide where to place your brick walkways.
 
 > **Formal Description**:
 >  * Input: A connected, undirected, weighted graph with at least 20 vertices, with the vertices being buildings at UD, the edges being sidewalks between them, and the edge weights being the length of that walkway (1 = 100ft)
@@ -64,13 +64,16 @@ graph = {
     'TH': {'LN': {'weight': 1}},
     'MH': {'TB': {'weight': 10}, 'PH': {'weight': 6}}
                }
+"""
+Meanings: L = Library, KB = Kirkrbide hall, SH = Smith hall, MH = Memorial hall, CR = Ceasar Rodney dining hall,  AH = Allison hall, AHW = Allison hall west, TH = Thompson hall, LN = Lane hall, PL = Pernell hall, EW = Ewing hall, TB = Trabant, WHS = Willard educational hall, MD = McDowell hall, IE = Independence east, IW = Independence west, PH = Pearson hall, SL = Sharp lab, PK = Perkins, GH = Gore hall, ISE = Harker lab
+"""
 
 G = nx.from_dict_of_dicts(graph)
 
 pos = nx.spring_layout(G, seed=4)
 labels = nx.get_edge_attributes(G,'weight')
 plt.figure(1,figsize=(12,12)) 
-nx.draw_networkx(G,pos, node_size=60, font_size=8)
+nx.draw_networkx(G,pos, node_size=70, node_color = "yellow", font_size=14, font_color = "red")
 nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
 plt.savefig("initial_graph.png")
 
@@ -90,7 +93,7 @@ H = nx.algorithms.minimum_spanning_tree(G, weight = "weight", algorithm = "prim"
 pos = nx.spring_layout(H, seed=4)
 labels = nx.get_edge_attributes(H,'weight')
 plt.figure(2,figsize=(12,12)) 
-nx.draw_networkx(H,pos, node_size=60, font_size=8)
+nx.draw_networkx(H,pos, node_size=70, node_color = "yellow", font_size=14, font_color = "red")
 nx.draw_networkx_edge_labels(H,pos,edge_labels=labels)
 plt.savefig("minimum_spanning_tree")
 
