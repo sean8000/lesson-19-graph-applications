@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 ```
 
 ## Additional sources
-https://stackoverflow.com/questions/14547388/networkx-in-python-draw-node-attributes-as-labels-outside-the-node 
+[node labels](https://stackoverflow.com/questions/14547388/networkx-in-python-draw-node-attributes-as-labels-outside-the-node)
 
 ### Minimal Brick Walkways
 
