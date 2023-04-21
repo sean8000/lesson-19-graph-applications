@@ -60,8 +60,7 @@ nx.draw_networkx(G1,pos, node_size=60, with_labels=False)
 nx.draw_networkx_labels(G1, pos_higher, font_size=8)
 nx.draw_networkx_edge_labels(G1,pos,edge_labels=labels, font_size=8)
 plt.savefig("initial_graph1.png")
-
-#plt.show()
+# plt.show()
 
 
 H1 = nx.shortest_path(G1, source='enterance', target='nachos', weight='weight', method='dijkstra')
@@ -79,7 +78,7 @@ H2 = nx.from_dict_of_dicts(short_graph)
 pos = nx.spring_layout(H2, seed=4)
 labels = nx.get_edge_attributes(H2,'weight')
 plt.figure(1,figsize=(12,12)) 
-nx.draw_networkx(H2,pos, node_size=60, font_size=8)
+nx.draw_networkx(H2,pos, node_size=60, font_size=16)
 nx.draw_networkx_edge_labels(H2,pos,edge_labels=labels)
 plt.savefig("path_graph1.png")
 # plt.show()
