@@ -315,14 +315,17 @@ Eta Kappa Nu
 **Interpretation of Results**:
 The solution presents all of the clubs that are in the connected component that contains CS+SG. 
 
-### Class Prerequisites
+### MEEG342 Class Prerequisites
 
 **Informal Description:**
-The problem: You enter Ceasar Rodney Dining Hall from Academy Street, but they are serving your favorite meal all the way on the other side of the dining hall. It is dinner time so the dining hall is packed. You need need to find the quickest way to get to your desired food station so you won't be late to your next class. Thankfully, the dining hall displays the amount of student traffic between different stations in the dining hall on a TV at the enterance.
+The problem: Freshman Mechanical Engineering student Andrew wants to take the class Heat Transfer (MEEG342) as soon as possible
+but there are a bunch of prerequisites for the class, and those classes have their own prerequisites, and so on. He wants to see
+a list of classes in topological order of the classes leading up to MEEG342. He figures he can put the entire cirriculum as a directed
+graph with prerequisites pointing towards further courses and run DFS to find the order of classes. 
 
 > **Formal Description:**
->  * Input: A connected, undirected, weighted graph with at least 20 vertices, with the vertices being food stations in the dining hall, the edges being the paths between stations, and the edge weights being the traffic (number of students in the way) between stations
->  * Output: A graph of the shortest path to the nachos station
+>  * Input: Input: A disconnected, directed, unweighted graph with at least 20 vertices, with the vertices being Mechanical Engineering classes, and the edges being a direction from prerequisite to a course.
+>  * Output: A list of non-repeating, topologically sorted nodes that lead to 'MEEG342'.
 
 **Graph Problem/Algorithm:** DFS
 
@@ -333,9 +336,8 @@ G = nx.DiGraph()
 G.add_nodes_from(["EGG101", "CHEM103/133", "MATH241", "CISC106", "MEEG102", "PHYS207", "MATH242", "MEEG104", "MEEG210", "MEEG241", "MATH243", "MATH351", "PHYS245", "MEEG211", "MEEG215", "MSEG201", "MATH352", "MATH353", "MEEG301", "MEEG311", "MEEG321", "MEEG331", "MEEG332", "MEEG342", "MEEG401"])
 G.add_edges_from([("CHEM103/133", "MSEG201"), ("MATH241", "MATH242"), ("CISC106", "MATH353"),("MEEG102", "MEEG301"),("PHYS207", "PHYS245"),("PHYS207", "MSEG201"),("MATH242", "MATH243"),("MATH242", "MEEG241"),("MEEG210", "MEEG215"),("MEEG210", "MEEG331"),("MEEG210", "MEEG211"),("MEEG241", "MEEG342"),("MATH351", "MATH352"),("MATH351", "MATH353"),("MATH351", "MEEG331"),("MEEG211", "MEEG301"),("MEEG211", "MEEG311"),("MEEG215", "MEEG304"),("MEEG215", "MEEG321"),("MSEG201", "MEEG321"),("MATH352", "MEEG332"),("MATH352", "MEEG342"),("MEEG301", "MEEG304"),("MEEG331", "MEEG332"),("MEEG304", "MEEG401")])
 
+# layer from example https://networkx.org/documentation/stable/auto_examples/graph/plot_dag_layout.html
 for layer, nodes in enumerate(nx.topological_generations(G)):
-    # `multipartite_layout` expects the layer as a node attribute, so add the
-    # numeric layer value as a node attribute
     for node in nodes:
         G.nodes[node]["layer"] = layer
 
@@ -346,28 +348,22 @@ plt.savefig("dfs_graph.png")
 ```
 
 **Visualization:**
-![A visualization of the cirriculum](dfs_graph.png)
+![A visualization of the cirriculum as a directed graph](dfs_graph.png)
 
 **Solution code:**
 ```python
-seen = set()
-def get_prerequisites(G, node):
-    prerequisites = []
-    for predecessor in G.predecessors(node):
-        if predecessor not in seen:
-            seen.add(predecessor)
-            prerequisites += get_prerequisites(G, predecessor)  
-    prerequisites.append(node)
-    return prerequisites
+prerequisites = nx.ancestors(G, "MEEG342")
 
-prerequisites = get_prerequisites(G, "MEEG342")
-print(prerequisites)
+# Topologically sort the ancestors
+prerequisites_sorted = list(nx.topological_sort(G.subgraph(prerequisites)))
+
+print(list(prerequisites_sorted))
 ```
 
 **Output:**
 ```The list of classes needed to be taken in topological order is:
- ['MATH241', 'MATH242', 'MEEG241', 'MATH351', 'MATH352', 'MEEG342']
+ ['MATH351', 'MATH241', 'MATH352', 'MATH242', 'MEEG241']
 ```
 
 **Interpretation of Results:**
-The result is a graph showing the path with the least total traffic (least total edge weight), from the enterance to the students desired food station (nacho station). In the conetxt of the problem, this is the path the students can reach the nacho station the quickest.
+The result is a list of classes topologically sorted, so a course's prerequisites show up before the course appears, to show an order of classes to be taken that before MEEG342 can be taken. 
