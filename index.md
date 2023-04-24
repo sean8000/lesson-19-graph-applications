@@ -7,7 +7,7 @@ Group Members:
 * First member: Sean Johnson, (seanjohn@udel.edu)
 * Second member: Joy Mwaria (jkmwaria@udel.edu)
 * Third member: Benita Abraham (beniabra@udel.edu)
-* Fourth member (email)
+* Fourth member Matthew Hansen (mghansen@udel.edu)
 
 Description of project
 
@@ -315,3 +315,55 @@ Eta Kappa Nu
 **Interpretation of Results**:
 The solution presents all of the clubs that are in the connected component that contains CS+SG. 
 
+### MEEG342 Class Prerequisites
+
+**Informal Description:**
+The problem: Freshman Mechanical Engineering student Andrew wants to take the class Heat Transfer (MEEG342) as soon as possible
+but there are a bunch of prerequisites for the class, and those classes have their own prerequisites, and so on. He wants to see
+a list of classes in topological order of the classes leading up to MEEG342. He figures he can put the entire cirriculum as a directed
+graph with prerequisites pointing towards further courses and run DFS to find the order of classes. 
+
+> **Formal Description:**
+>  * Input: Input: A disconnected, directed, unweighted graph with at least 20 vertices, with the vertices being Mechanical Engineering classes, and the edges being a direction from prerequisite to a course.
+>  * Output: A list of non-repeating, topologically sorted nodes that lead to 'MEEG342'.
+
+**Graph Problem/Algorithm:** DFS
+
+**Setup code:**
+```python
+G = nx.DiGraph()
+
+G.add_nodes_from(["EGG101", "CHEM103/133", "MATH241", "CISC106", "MEEG102", "PHYS207", "MATH242", "MEEG104", "MEEG210", "MEEG241", "MATH243", "MATH351", "PHYS245", "MEEG211", "MEEG215", "MSEG201", "MATH352", "MATH353", "MEEG301", "MEEG311", "MEEG321", "MEEG331", "MEEG332", "MEEG342", "MEEG401"])
+G.add_edges_from([("CHEM103/133", "MSEG201"), ("MATH241", "MATH242"), ("CISC106", "MATH353"),("MEEG102", "MEEG301"),("PHYS207", "PHYS245"),("PHYS207", "MSEG201"),("MATH242", "MATH243"),("MATH242", "MEEG241"),("MEEG210", "MEEG215"),("MEEG210", "MEEG331"),("MEEG210", "MEEG211"),("MEEG241", "MEEG342"),("MATH351", "MATH352"),("MATH351", "MATH353"),("MATH351", "MEEG331"),("MEEG211", "MEEG301"),("MEEG211", "MEEG311"),("MEEG215", "MEEG304"),("MEEG215", "MEEG321"),("MSEG201", "MEEG321"),("MATH352", "MEEG332"),("MATH352", "MEEG342"),("MEEG301", "MEEG304"),("MEEG331", "MEEG332"),("MEEG304", "MEEG401")])
+
+# layer from example https://networkx.org/documentation/stable/auto_examples/graph/plot_dag_layout.html
+for layer, nodes in enumerate(nx.topological_generations(G)):
+    for node in nodes:
+        G.nodes[node]["layer"] = layer
+
+plt.figure(1,figsize=(12,12)) 
+pos = nx.multipartite_layout(G, subset_key="layer")
+nx.draw_networkx(G, pos, node_size=1800, with_labels=True, arrows=True, node_color="lightblue", font_size=10)
+plt.savefig("dfs_graph.png")
+```
+
+**Visualization:**
+![A visualization of the cirriculum as a directed graph](dfs_graph.png)
+
+**Solution code:**
+```python
+prerequisites = nx.ancestors(G, "MEEG342")
+
+# Topologically sort the ancestors
+prerequisites_sorted = list(nx.topological_sort(G.subgraph(prerequisites)))
+
+print(list(prerequisites_sorted))
+```
+
+**Output:**
+```The list of classes needed to be taken in topological order is:
+ ['MATH351', 'MATH241', 'MATH352', 'MATH242', 'MEEG241']
+```
+
+**Interpretation of Results:**
+The result is a list of classes topologically sorted, so a course's prerequisites show up before the course appears, to show an order of classes to be taken that before MEEG342 can be taken. 
