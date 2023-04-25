@@ -87,10 +87,10 @@ G.add_edge("MMSC","AMT")
 
 
 """Drawing the graph"""
-pos = nx.spring_layout(G, seed=4)
+pos = nx.spring_layout(G, seed=4, k=0.45)
 labels = nx.get_edge_attributes(G,'weight')
 plt.figure(1,figsize=(12,12)) 
-nx.draw_networkx(G,pos, node_size=60, font_size=8)
+nx.draw_networkx(G,pos, node_size=60, node_color="pink" ,font_size=10)
 nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
 plt.savefig("club_graph.png")
 plt.show()
